@@ -11,13 +11,12 @@
 SELECT
     e.first_name || ' ' || e.last_name AS "Naziv zaposlenog",
     j.JOB_TITLE AS "Posao",
-    CASE 
-        WHEN j.JOB_TITLE = 'President' THEN 'A'
-        WHEN j.JOB_TITLE = 'Manager' THEN 'B'
-        WHEN j.JOB_TITLE = 'Analyst' THEN 'C'
-        WHEN j.JOB_TITLE = 'Sales Manager' THEN 'D'
-        WHEN j.JOB_TITLE = 'Programmer' THEN 'E'
-        ELSE 'X'
-    END AS "Stepen posla"
+    DECODE(j.JOB_TITLE, 
+    'President', 'A',
+    'Manager', 'B',
+    'Analyst', 'C',
+    'Sales Manager', 'D',
+    'Programmer', 'E', 
+    'X') AS "Stepen posla"
 FROM employees e
 JOIN jobs j ON e.JOB_ID=j.JOB_ID;
